@@ -15,18 +15,6 @@ export class Pool extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
-
-    this.set("token0", Value.fromBytes(Bytes.empty()));
-    this.set("token1", Value.fromBytes(Bytes.empty()));
-    this.set("feeTier", Value.fromBigInt(BigInt.zero()));
-    this.set("liquidity", Value.fromBigInt(BigInt.zero()));
-    this.set("sqrtPrice", Value.fromBigInt(BigInt.zero()));
-    this.set("feeGrowthGlobal0X128", Value.fromBigInt(BigInt.zero()));
-    this.set("feeGrowthGlobal1X128", Value.fromBigInt(BigInt.zero()));
-    this.set("feesToken0", Value.fromBigInt(BigInt.zero()));
-    this.set("feesToken1", Value.fromBigInt(BigInt.zero()));
-    this.set("volumeToken0", Value.fromBigInt(BigInt.zero()));
-    this.set("volumeToken1", Value.fromBigInt(BigInt.zero()));
   }
 
   save(): void {
@@ -55,122 +43,6 @@ export class Pool extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get token0(): Bytes {
-    let value = this.get("token0");
-    return value!.toBytes();
-  }
-
-  set token0(value: Bytes) {
-    this.set("token0", Value.fromBytes(value));
-  }
-
-  get token1(): Bytes {
-    let value = this.get("token1");
-    return value!.toBytes();
-  }
-
-  set token1(value: Bytes) {
-    this.set("token1", Value.fromBytes(value));
-  }
-
-  get feeTier(): BigInt {
-    let value = this.get("feeTier");
-    return value!.toBigInt();
-  }
-
-  set feeTier(value: BigInt) {
-    this.set("feeTier", Value.fromBigInt(value));
-  }
-
-  get liquidity(): BigInt {
-    let value = this.get("liquidity");
-    return value!.toBigInt();
-  }
-
-  set liquidity(value: BigInt) {
-    this.set("liquidity", Value.fromBigInt(value));
-  }
-
-  get sqrtPrice(): BigInt {
-    let value = this.get("sqrtPrice");
-    return value!.toBigInt();
-  }
-
-  set sqrtPrice(value: BigInt) {
-    this.set("sqrtPrice", Value.fromBigInt(value));
-  }
-
-  get feeGrowthGlobal0X128(): BigInt {
-    let value = this.get("feeGrowthGlobal0X128");
-    return value!.toBigInt();
-  }
-
-  set feeGrowthGlobal0X128(value: BigInt) {
-    this.set("feeGrowthGlobal0X128", Value.fromBigInt(value));
-  }
-
-  get feeGrowthGlobal1X128(): BigInt {
-    let value = this.get("feeGrowthGlobal1X128");
-    return value!.toBigInt();
-  }
-
-  set feeGrowthGlobal1X128(value: BigInt) {
-    this.set("feeGrowthGlobal1X128", Value.fromBigInt(value));
-  }
-
-  get feesToken0(): BigInt {
-    let value = this.get("feesToken0");
-    return value!.toBigInt();
-  }
-
-  set feesToken0(value: BigInt) {
-    this.set("feesToken0", Value.fromBigInt(value));
-  }
-
-  get feesToken1(): BigInt {
-    let value = this.get("feesToken1");
-    return value!.toBigInt();
-  }
-
-  set feesToken1(value: BigInt) {
-    this.set("feesToken1", Value.fromBigInt(value));
-  }
-
-  get tick(): BigInt | null {
-    let value = this.get("tick");
-    if (!value || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toBigInt();
-    }
-  }
-
-  set tick(value: BigInt | null) {
-    if (!value) {
-      this.unset("tick");
-    } else {
-      this.set("tick", Value.fromBigInt(<BigInt>value));
-    }
-  }
-
-  get volumeToken0(): BigInt {
-    let value = this.get("volumeToken0");
-    return value!.toBigInt();
-  }
-
-  set volumeToken0(value: BigInt) {
-    this.set("volumeToken0", Value.fromBigInt(value));
-  }
-
-  get volumeToken1(): BigInt {
-    let value = this.get("volumeToken1");
-    return value!.toBigInt();
-  }
-
-  set volumeToken1(value: BigInt) {
-    this.set("volumeToken1", Value.fromBigInt(value));
-  }
-
   get positions(): Array<string> {
     let value = this.get("positions");
     return value!.toStringArray();
@@ -191,8 +63,6 @@ export class Position extends Entity {
     this.set("tickLower", Value.fromBigInt(BigInt.zero()));
     this.set("tickUpper", Value.fromBigInt(BigInt.zero()));
     this.set("liquidity", Value.fromBigInt(BigInt.zero()));
-    this.set("feeGrowthInside0LastX128", Value.fromBigInt(BigInt.zero()));
-    this.set("feeGrowthInside1LastX128", Value.fromBigInt(BigInt.zero()));
   }
 
   save(): void {
@@ -264,23 +134,5 @@ export class Position extends Entity {
 
   set liquidity(value: BigInt) {
     this.set("liquidity", Value.fromBigInt(value));
-  }
-
-  get feeGrowthInside0LastX128(): BigInt {
-    let value = this.get("feeGrowthInside0LastX128");
-    return value!.toBigInt();
-  }
-
-  set feeGrowthInside0LastX128(value: BigInt) {
-    this.set("feeGrowthInside0LastX128", Value.fromBigInt(value));
-  }
-
-  get feeGrowthInside1LastX128(): BigInt {
-    let value = this.get("feeGrowthInside1LastX128");
-    return value!.toBigInt();
-  }
-
-  set feeGrowthInside1LastX128(value: BigInt) {
-    this.set("feeGrowthInside1LastX128", Value.fromBigInt(value));
   }
 }

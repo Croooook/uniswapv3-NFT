@@ -42,15 +42,9 @@ export function createOrLoadPosition(tokenId: BigInt): Position | null {
     position.tickLower = BigInt.fromI32(positionResult.value5);
     position.tickUpper = BigInt.fromI32(positionResult.value6);
     position.liquidity = BIG_INT_ZERO;
-    position.feeGrowthInside0LastX128 = positionResult.value8;
-    position.feeGrowthInside1LastX128 = positionResult.value9;
+    
     position.save();
-  } else {
-    // update fee growth
-    position.feeGrowthInside0LastX128 = positionResult.value8;
-    position.feeGrowthInside1LastX128 = positionResult.value9;
-    position.save();
-  }
+  } 
 
   return position;
 }

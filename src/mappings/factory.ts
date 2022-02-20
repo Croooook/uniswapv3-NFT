@@ -15,26 +15,14 @@ export function handlePoolCreated(event: PoolCreated): void {
 
   let pool = new Pool(event.params.pool.toHexString());
 
-  pool.token0 = event.params.token0;
-  pool.token1 = event.params.token1;
-  pool.feeTier = BigInt.fromI32(event.params.fee);
-  pool.liquidity = BIG_INT_ZERO;
-  pool.sqrtPrice = BIG_INT_ZERO;
-  pool.feeGrowthGlobal0X128 = BIG_INT_ZERO;
-  pool.feeGrowthGlobal1X128 = BIG_INT_ZERO;
-  pool.feesToken0 = BIG_INT_ZERO;
-  pool.feesToken1 = BIG_INT_ZERO;
-  pool.volumeToken0 = BIG_INT_ZERO;
-  pool.volumeToken1 = BIG_INT_ZERO;
+  
   pool.save();
 
   // create the tracked contract based on the template
   PoolTemplate.create(event.params.pool);
 
-  log.info("[Factory] PoolCreated pool={} token0={} token1={} fee={}", [
+  log.info("[Factory] PoolCreated pool={}", [
     pool.id,
-    pool.token0.toHexString(),
-    pool.token1.toHexString(),
-    pool.feeTier.toString(),
+  
   ]);
 }
