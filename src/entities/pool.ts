@@ -3,7 +3,7 @@ import {
   STAKED_ETH_TOKEN_ADDRESS,
   REWARD_ETH_TOKEN_ADDRESS,
   STAKEWISE_TOKEN_ADDRESS,
-} from "const";
+} from "./const";
 
 export function isSupportedToken(token: Address): boolean {
   return (

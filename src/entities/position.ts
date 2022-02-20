@@ -4,7 +4,7 @@ import {
   BIG_INT_ZERO,
   UNISWAP_V3_FACTORY_ADDRESS,
   UNISWAP_V3_POSITION_MANAGER_ADDRESS,
-} from "const";
+} from "./const";
 import { Position } from "../../generated/schema";
 import { NonfungiblePositionManager } from "../../generated/NonfungiblePositionManager/NonfungiblePositionManager";
 import { Factory as FactoryContract } from "../../generated/Factory/Factory";

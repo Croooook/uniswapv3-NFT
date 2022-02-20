@@ -178,7 +178,7 @@ export class Transfer__Params {
   }
 }
 
-export class Contract__positionsResult {
+export class NonfungiblePositionManager__positionsResult {
   value0: BigInt;
   value1: Address;
   value2: Address;
@@ -241,9 +241,12 @@ export class Contract__positionsResult {
   }
 }
 
-export class Contract extends ethereum.SmartContract {
-  static bind(address: Address): Contract {
-    return new Contract("Contract", address);
+export class NonfungiblePositionManager extends ethereum.SmartContract {
+  static bind(address: Address): NonfungiblePositionManager {
+    return new NonfungiblePositionManager(
+      "NonfungiblePositionManager",
+      address
+    );
   }
 
   DOMAIN_SEPARATOR(): Bytes {
@@ -437,14 +440,14 @@ export class Contract extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
-  positions(tokenId: BigInt): Contract__positionsResult {
+  positions(tokenId: BigInt): NonfungiblePositionManager__positionsResult {
     let result = super.call(
       "positions",
       "positions(uint256):(uint96,address,address,address,uint24,int24,int24,uint128,uint256,uint256,uint128,uint128)",
       [ethereum.Value.fromUnsignedBigInt(tokenId)]
     );
 
-    return new Contract__positionsResult(
+    return new NonfungiblePositionManager__positionsResult(
       result[0].toBigInt(),
       result[1].toAddress(),
       result[2].toAddress(),
@@ -462,7 +465,7 @@ export class Contract extends ethereum.SmartContract {
 
   try_positions(
     tokenId: BigInt
-  ): ethereum.CallResult<Contract__positionsResult> {
+  ): ethereum.CallResult<NonfungiblePositionManager__positionsResult> {
     let result = super.tryCall(
       "positions",
       "positions(uint256):(uint96,address,address,address,uint24,int24,int24,uint128,uint256,uint256,uint128,uint128)",
@@ -473,7 +476,7 @@ export class Contract extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      new Contract__positionsResult(
+      new NonfungiblePositionManager__positionsResult(
         value[0].toBigInt(),
         value[1].toAddress(),
         value[2].toAddress(),

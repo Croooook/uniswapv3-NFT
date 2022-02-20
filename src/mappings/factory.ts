@@ -1,5 +1,5 @@
 import { BigInt, log } from "@graphprotocol/graph-ts";
-import { BIG_INT_ZERO } from "const";
+import { BIG_INT_ZERO } from "./const";
 import { PoolCreated } from "../../generated/Factory/Factory";
 import { Pool as PoolTemplate } from "../../generated/templates";
 import { Pool } from "../../generated/schema";
