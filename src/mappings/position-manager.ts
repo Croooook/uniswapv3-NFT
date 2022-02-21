@@ -36,11 +36,12 @@ export function createOrLoadPosition(tokenId: BigInt): Position | null {
 
   let position = Position.load(tokenId.toString());
   if (position == null) {
+    position = new Position(tokenId.toString());
+  }
+    
     let factoryContract = FactoryContract.bind(UNISWAP_V3_FACTORY_ADDRESS);
     let fee = positionResult.value4;
     let poolAddress = factoryContract.getPool(token0, token1, fee);
-
-    position = new Position(tokenId.toString());
     position.owner = ADDRESS_ZERO;
     position.pool = poolAddress.toHexString();
     position.tickLower = BigInt.fromI32(positionResult.value5);
@@ -48,7 +49,8 @@ export function createOrLoadPosition(tokenId: BigInt): Position | null {
     position.liquidity = BIG_INT_ZERO;
     
     position.save();
-  } 
+
+   
 
   return position;
 }
