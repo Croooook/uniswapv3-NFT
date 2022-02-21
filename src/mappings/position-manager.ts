@@ -94,22 +94,7 @@ export function handleDecreaseLiquidity(event: DecreaseLiquidity): void {
 
 export function handleCollect(event: Collect): void {
   
-  let position = createOrLoadPosition(event.params.tokenId);
-
-  // position was not able to be fetched or is not supported
-  if (position == null) {
-    return;
-  }
-  position.save();
-
-  log.info(
-    "[NonfungiblePositionManager] Collect position={} amount0={} amount1={}",
-    [
-      event.params.tokenId.toString(),
-      event.params.amount0.toString(),
-      event.params.amount1.toString(),
-    ]
-  );
+ 
 }
 
 export function handleTransfer(event: Transfer): void {
