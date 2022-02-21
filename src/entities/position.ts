@@ -8,7 +8,7 @@ import {
 import { Position } from "../../generated/schema";
 import { NonfungiblePositionManager } from "../../generated/NonfungiblePositionManager/NonfungiblePositionManager";
 import { Factory as FactoryContract } from "../../generated/Factory/Factory";
-import { isSupportedToken } from "./pool";
+
 
 export function createOrLoadPosition(tokenId: BigInt): Position | null {
   let contract = NonfungiblePositionManager.bind(
@@ -25,10 +25,7 @@ export function createOrLoadPosition(tokenId: BigInt): Position | null {
   let token0 = positionResult.value2;
   let token1 = positionResult.value3;
 
-  let hasSupportedToken = isSupportedToken(token0) || isSupportedToken(token1);
-  if (!hasSupportedToken) {
-    return null;
-  }
+  
 
   let position = Position.load(tokenId.toString());
   if (position == null) {

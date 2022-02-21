@@ -1,5 +1,4 @@
-import { BigInt, log } from "@graphprotocol/graph-ts";
-import { BIG_INT_1E6, BIG_INT_ZERO } from "./const";
+
 import {
   Burn,
   Flash,
@@ -19,10 +18,7 @@ export function handleInitialize(event: Initialize): void {
  
   pool.save();
 
-  log.info("[Pool] Initialize pool={}", [
-    pool.id,
-    
-  ]);
+  
 }
 
 export function handleMint(event: Mint): void {
