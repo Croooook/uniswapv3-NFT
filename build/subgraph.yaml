@@ -8,7 +8,7 @@ dataSources:
     source:
       address: "0x1F98431c8aD98523631AE4a59f267346ea31F984"
       abi: Factory
-      startBlock: 22757547
+      startBlock: 23664632
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -28,7 +28,7 @@ dataSources:
     source:
       address: "0xC36442b4a4522E871399CD717aBDD847Ab11FE88"
       abi: NonfungiblePositionManager
-      startBlock: 24024553
+      startBlock: 24072370
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -51,30 +51,3 @@ dataSources:
           handler: handleCollect
         - event: Transfer(indexed address,indexed address,indexed uint256)
           handler: handleTransfer
-templates:
-  - kind: ethereum/contract
-    name: Pool
-    network: matic
-    source:
-      abi: Pool
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.5
-      language: wasm/assemblyscript
-      file: templates/Pool/Pool.wasm
-      entities:
-        - Pool
-      abis:
-        - name: Pool
-          file: Pool/packages/abis/Pool.json
-      eventHandlers:
-        - event: Initialize(uint160,int24)
-          handler: handleInitialize
-        - event: Swap(indexed address,indexed address,int256,int256,uint160,uint128,int24)
-          handler: handleSwap
-        - event: Mint(address,indexed address,indexed int24,indexed int24,uint128,uint256,uint256)
-          handler: handleMint
-        - event: Burn(indexed address,indexed int24,indexed int24,uint128,uint256,uint256)
-          handler: handleBurn
-        - event: Flash(indexed address,indexed address,uint256,uint256,uint256,uint256)
-          handler: handleFlash
